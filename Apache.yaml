@@ -27,9 +27,9 @@ Resources:
         - Key: Name
           Value:
             Fn::Sub:
-                    - |
-                      JehangirCFWebSG-${env}
-                    - env: !Ref Environment
+              - |
+                JehangirCFWebSG-${env}
+              - env: !Ref Environment
 
 # Create Web Server
   JehangirCFWebServer: 
@@ -50,6 +50,6 @@ Resources:
         - Key: Name
           Value:
             Fn::Sub:
-                    - |
-                      JehangirCFWebServer-${env}
-                    - env: !Ref Environment
+              - |
+                JehangirCFWebServer-${env}
+              - env: !Ref Environment
