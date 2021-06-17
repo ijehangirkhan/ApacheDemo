@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This Template creates an Apache Web Server.
+
+  
+Resources:
+  JehangirCFWebSG:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Security Group for Web Server
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: JehangirCFWebSG
+
+# Create Web Server
+  JehangirCFWebServer: 
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: "JehangirKP"
+      ImageId: ami-09e67e426f25ce0d7 # Virginia
+      InstanceType: t2.micro
+      UserData: !Base64 |
+          #!/bin/bash
+          apt update -y
+          apt upgrade -y
+          apt install apache2 -y
+          service apache2 start
+      SecurityGroupIds:
+        - !Ref JehangirCFWebSG
+      Tags:
+        - Key: Name
+          Value: JehangirCFWebServer
