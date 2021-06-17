@@ -1,6 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: This Template creates an Apache Web Server.
 
+Parameters:
+  MyKeyName:
+    Description: Select the Key Name.
+    Type: AWS::EC2::KeyPair::KeyName
   
 Resources:
   JehangirCFWebSG:
@@ -24,8 +28,8 @@ Resources:
   JehangirCFWebServer: 
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: "JehangirKP"
-      ImageId: ami-09e67e426f25ce0d7 # Virginia
+      KeyName: !Ref MyKeyName
+      ImageId: ami-00399ec92321828f5 # Ami for Virginia : ami-09e67e426f25ce0d7
       InstanceType: t2.micro
       UserData: !Base64 |
           #!/bin/bash
