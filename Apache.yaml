@@ -3,8 +3,11 @@ Description: This Template creates an Apache Web Server.
 
 Parameters:
   MyKeyName:
-    Description: Select the Key Name.
+    Description: Select the Key Name
     Type: AWS::EC2::KeyPair::KeyName
+  Environment:
+    Type: String
+    Description: Select the Environment
   
 Resources:
   JehangirCFWebSG:
@@ -22,7 +25,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: JehangirCFWebSG
+          Value: JehangirCFWebSG-${Environment}
 
 # Create Web Server
   JehangirCFWebServer: 
@@ -41,4 +44,4 @@ Resources:
         - !Ref JehangirCFWebSG
       Tags:
         - Key: Name
-          Value: JehangirCFWebServer
+          Value: JehangirCFWebServer-${Environment}
