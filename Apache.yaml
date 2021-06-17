@@ -25,7 +25,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: JehangirCFWebSG-${Environment}
+          Value: JehangirCFWebSG-${ !Ref Environment }
 
 # Create Web Server
   JehangirCFWebServer: 
@@ -44,4 +44,4 @@ Resources:
         - !Ref JehangirCFWebSG
       Tags:
         - Key: Name
-          Value: JehangirCFWebServer-${Environment}
+          Value: JehangirCFWebServer-${ !Ref Environment }
